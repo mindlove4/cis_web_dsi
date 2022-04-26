@@ -1,0 +1,22 @@
+body {
+    background: whitesmoke;
+}
+
+.card {
+    background-color: #cac3c4;
+}
+
+.log-bt {
+    background-color: #7a0d0d;
+    font-size: 14px;
+}
+
+.log-gg {
+    background-color: #ba848c;
+    font-size: 14px;
+}
+
+h2 {
+    color: #7a0d0d;
+}
+

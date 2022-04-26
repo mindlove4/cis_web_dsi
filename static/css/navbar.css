@@ -1,0 +1,24 @@
+.navbar-custom {
+    background-color: #cac3c4
+}
+/* Modify brand and text color */
+ 
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: black;
+    font-size: 20px;
+}
+
+footer {
+    display: block;
+    text-align: center;
+    background-color: #cac3c4 ;
+    color: black;
+    font-size: 14px;
+}
+
+.footer-text {
+    color: black;
+    font-size: 14px;
+}
+

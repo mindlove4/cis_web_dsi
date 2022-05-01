@@ -40,15 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cisweb',
-    'loginsystem',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'social_django',
+    'django_filters',
+    'widget_tweaks',
 ]
 SITE_ID = 1
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/checkdome'
+LOGIN_REDIRECT_URL='/checkdome'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -62,10 +64,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': {
-            'client_id': '53230813793-tebukqn9mglfq07f45o88l2c3m4csvr4.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         }
     }
 }
@@ -107,11 +111,8 @@ WSGI_APPLICATION = 'web01.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cis_database',
-        'USER':'root',
-        'HOST':"localhost",
-        'PASSWORD':''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -14,14 +14,13 @@
     <link rel="stylesheet" href = "{% static 'css/profile1.css' %}">
 </head>
 <body>
-<form action='aadForm' method="get">
   <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <img class="rounded-circle mt-5" width="150px" src="{{teacher.teacher_img.url}}">
                 <span class="font-weight-bold">01/2564</span>
-                <span class="text-black-50">อาจารย์ของหลักสูตร</span>
+                <span class="text-black-50">{{ teacher.role }}</span>
             </div>
         </div>
         <div class="col-md-5 border-right">
@@ -29,23 +28,24 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right"><b>แก้ไขประวัติส่วนตัว</b></h4>
                 </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">คำนำหน้าชื่อ</label><input  type="text" class="form-control" placeholder="นาย/นาง/นางสาว" value="" name="prefix"></div>
-                    <div class="col-md-6"><label class="labels">เพศ</label><input  type="text" class="form-control" value="" placeholder="หญิง/ชาย" name="gender" ></div>
+                    <div class="col-md-6"><label class="labels">คำนำหน้าชื่อ</label><input  type="text" class="form-control" placeholder="นาย/นาง/นางสาว" value="{{teacher.teacher_prefix}}" name="prefix"></div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">ชื่อ</label><input  type="text" class="form-control" placeholder="ไม่ต้องใส่คำนำหน้า" value="" name="firstname"></div>
-                    <div class="col-md-12"><label class="labels">นามสกุล</label><input  type="text" class="form-control" value="" placeholder="" name="lastname"></div>
+                    <div class="col-md-12"><label class="labels">ชื่อ</label><input  type="text" class="form-control" placeholder="ไม่ต้องใส่คำนำหน้า" value="{{teacher.teacher_firstname}}" name="first_name"></div>
+                    <div class="col-md-12"><label class="labels">นามสกุล</label><input  type="text" class="form-control" value="{{teacher.teacher_lastname}}" placeholder="" name="last_name"></div>
                 </div>
                                               
                 <div class="row mt-3">
                     <div class="d-flex justify-content-between align-items-center ">
                     <span class="text-right"><b>ข้อมูลการติดต่อ</b></span>
                     </div>
-                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ</label><input type="int" class="form-control" placeholder="0xxxxxxxxx" value="" name="teacher_tel" ></div>
-                    <div class="col-md-12"><label class="labels">E-mail</label><input  type="text" class="form-control" value="" placeholder="xxx@dome.tu.ac.th" name="teacher_email"></div>
+                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ</label><input type="int" class="form-control" placeholder="0xxxxxxxxx" value="{{teacher.teacher_tel}}" name="teacher_tel" ></div>
+                    <div class="col-md-12"><label class="labels">E-mail</label><input  type="text" class="form-control" value="{{teacher.teacher_email}}" placeholder="xxx@dome.tu.ac.th" name="teacher_email"></div>
                 </div>
-                <div class="mt-5 text-center"><a href={% url 'profile' %}><input type="submit" value="บันทึกข้อมูล" class="btn btn-primary profile-button"></a></div>
+                <div class="mt-5 text-center"><a href="/"><input type="submit" value="บันทึกข้อมูล" class="btn btn-primary profile-button"></a></div>
             </div>
         </div>
         
@@ -63,10 +63,11 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Upload Profile Picture</label>                        
-                        <input type="file" id="img" name="teacher_img" accept="image/*">
+                        <input type="file" id="img" name="img" accept="image/*">
                         {% comment %} <input type="submit"> {% endcomment %}
                     </div>
                 </div>
+            </form>
                 {% comment %} <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">สถานะอาจจะไม่ใส่ fun</label><input type="text" class="form-control" placeholder="#unapproved" value=""></div> {% endcomment %}
                 </div>

@@ -22,7 +22,7 @@
                 <img class="rounded-circle mt-5" width="150px" src="{% static 'img\pofile1.jpeg' %}"> 
                 <br>
                 <span class="font-weight-bold">01/2564</span>
-                <span class="text-black-50">อาจารย์ของหลักสูตร</span>
+                <span class="text-black-50">อาจารย์ที่ปรึกษา</span>
             </div>
         </div>
         <div class="col-md-5 border-right">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12"><label class="labels">คำนำหน้าชื่อ : </label> <span> นาย </span></div>
-                    <div class="col-md-12"><label class="labels">เพศ : </label> <span> ชาย </span></div>
+                    
                     <div class="col-md-12"><label class="labels"> ชื่อ :</label>  <span> สมเกียรติ</span></div>
                     <div class="col-md-12"><label class="labels"> นามสกุล : </label>  <span> โกศลสมบัติ</span></div>
                 </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="row mt-3">
                     {% comment %} <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> {% endcomment %}
-                        <div class="col-md-12"><label class="labels"> สถานะ : </label> <span>approved</span></div>
+                        <div class="col-md-12"><label class="labels"> สถานะ : </label> <span>{{status}}</span></div>
                     </div>
                 </div>
             </div>

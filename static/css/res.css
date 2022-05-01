@@ -4,11 +4,13 @@ body {
 
 h3 {
     color: black;
+    font-family: 'TUFont';
 }
 
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    font-family: 'TUFont';
 }
 
 th {
@@ -17,12 +19,14 @@ th {
     text-align: center;
     background-color: #7a0d0d;
     width: 20%;
+    font-family: 'TUFont';
 }
 
 td {
     padding: 20px;
     text-align: center;
     width: 20%;
+    font-family: 'TUFont';
 
 }
 
@@ -36,4 +40,14 @@ table#t01 {
     margin: auto;
     width: 60%;
     
-  }
+}
+
+a {
+    color: black;
+    text-decoration:none;
+}
+
+p{
+    font-family: 'TUFont';
+}
+@font-face { font-family: 'TUFont'; src: local('TUFont'), url('/static/fonts/TUFont.ttf') format('truetype'); } 

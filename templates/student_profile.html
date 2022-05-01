@@ -20,9 +20,9 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="{% static 'img\student.jpg' %}">
+                <img class="rounded-circle mt-5" width="150px" src="{{ student.student_img.url }}">
                 <br>
-                <span class="font-weight-bold">6209656351</span>
+                <span class="font-weight-bold">{{student.student_id}}</span>
                 <span class="text-black-50">นักศึกษา</span>
             </div>
         </div>
@@ -34,18 +34,17 @@
                 </div>
 
                 <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">คำนำหน้าชื่อ : </label> <span> นางสาว </span></div>
-                    <div class="col-md-12"><label class="labels">เพศ : </label> <span> หญิง </span></div>
-                    <div class="col-md-12"><label class="labels"> ชื่อ :</label>  <span> เรณุกา </span></div>
-                    <div class="col-md-12"><label class="labels"> นามสกุล : </label>  <span> สิมะดำรงค์</span></div>
+                    <div class="col-md-12"><label class="labels">คำนำหน้าชื่อ : </label> <span>{{student.student_prefix}}</span></div>
+                    <div class="col-md-12"><label class="labels"> ชื่อ :</label>  <span> {{student.student_firstname}} </span></div>
+                    <div class="col-md-12"><label class="labels"> นามสกุล : </label>  <span>{{student.student_lastname}}</span></div>
                 </div>    
              
                 <div class="row mt-3">
                     <div class="d-flex justify-content-between align-items-center ">
                     <span class="text-right"><b>ข้อมูลการติดต่อ</b></span>
                     </div>
-                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ : </label> <span> 0946915119 </span></div>
-                    <div class="col-md-12"><label class="labels">E-mail : </label> <span> renudga.sim@dome.tu.ac.th</span></div>
+                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ : </label> <span> {{student.student_tel}} </span></div>
+                    <div class="col-md-12"><label class="labels">E-mail : </label> <span>{{student.student_email}}</span></div>
                 </div>
                 
                 {% comment %} <div class="mt-5 text-center"><a href={% url 'edit' %}><button class="btn btn-primary profile-button" type="button" > แก้ไขประวัติส่วนตัว </button></a></div> {% endcomment %}
@@ -66,12 +65,12 @@
                         <span class="text-right"><b>ประวัติการศึกษา</b></span>
                         </div>
 
-                        <div class="col-md-12"><label class="labels">ระดับปริญญา : </label> <span> ปริญญาตรี  </span></div>
-                        <div class="col-md-12"><label class="labels">ศูนย์ : </label> <span> รังสิต </span></div>
-                        <div class="col-md-12"><label class="labels">คณะ : </label> <span> วิทยาลัยสหวิทยาการ </span></div>
-                        <div class="col-md-12"><label class="labels">สาขา : </label> <span> วิทยาศาสตร์และนวัตกรรมข้อมูล </span></div>
-                        <div class="col-md-12"><label class="labels">ชั้นปีที่ศึกษา : </label> <span> 3 </span></div>
-                        <div class="col-md-12"><label class="labels">GPAX : </label> <span> 3.99 </span></div>
+                        <div class="col-md-12"><label class="labels">ระดับปริญญา : </label> <span> {{student.education_level}}  </span></div>
+                        <div class="col-md-12"><label class="labels">ศูนย์ : </label> <span> {{student.campus}} </span></div>
+                        <div class="col-md-12"><label class="labels">คณะ : </label> <span> {{student.faculty}}</span></div>
+                        <div class="col-md-12"><label class="labels">สาขา : </label> <span>{{student.major}}</span></div>
+                        <div class="col-md-12"><label class="labels">ชั้นปีที่ศึกษา : </label> <span> {{student.year}} </span></div>
+                        <div class="col-md-12"><label class="labels">GPAX : </label> <span> {{student.gpax}} </span></div>
                     </div>                                
                 </div>
             </div>

@@ -10,7 +10,7 @@
 }
 
 .u-section-1 .u-text-1 {
-  font-family: TUFont;
+  font-family: 'TUFont';
   font-weight: 700;
   font-size: 3.75rem;
   line-height: 1.2;
@@ -38,7 +38,7 @@
   font-size: 1.25rem;
   letter-spacing: 1px;
   background-image: none;
-  font-family: TUFont;
+  font-family: 'TUFont';
   font-weight: normal;
   margin: 10px auto 0;
 }
@@ -53,7 +53,7 @@
   font-size: 1.25rem;
   letter-spacing: 1px;
   background-image: none;
-  font-family: TUFont;
+  font-family: 'TUFont';
   font-weight: normal;
   margin: 10px auto 0;
 }
@@ -68,7 +68,7 @@
   font-size: 1.25rem;
   letter-spacing: 1px;
   background-image: none;
-  font-family: TUFont;
+  font-family: 'TUFont';
   font-weight: normal;
   margin: 10px auto 0;
 }
@@ -181,9 +181,5 @@
   .u-section-1 .u-list-1 {
     margin-top: 53px;
   }
-}@font-face {
-  font-family: 'TUFont';
-  font-style: normal;
-  font-weight: 400;
-  src: url(fonts/TUFont.ttf);
-}
+
+  @font-face { font-family: 'TUFont'; src: local('TUFont'), url('/static/fonts/TUFont.ttf') format('truetype'); } 

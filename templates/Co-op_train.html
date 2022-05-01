@@ -1,6 +1,6 @@
 {% extends 'navbar.html'%}
 {% load static %}
-
+{% load widget_tweaks %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +17,11 @@
 <br>
 <br>
 <div class='text-center'><h3> สืบค้นข้อมูลอบรมณาจารย์นิเทศ </h3></div>
+
 <br>
     {% comment %} ค้นหา {% endcomment %}
     <div class="s009">
-      <form>
+      <form method="get">
         <div class="inner-form">
           <div class="basic-search">
             <div class="input-field">
@@ -34,43 +35,12 @@
           </div>
           <div class="advance-search">
             <span class="desc">ค้นหาแบบละเอียด</span>
-            <div class="row">
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">หลักสูตร</option>
-                    <option>เปิดรับสมัคร</option>
-                    <option>ปิดรับสมัคร</option>
-                  </select>
-                </div>
-              </div>
-              {% comment %} <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Color</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Size</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div> {% endcomment %}
-            </div>
-          
-            <div class="row third">
-              <div class="input-field">
-                <div class="result-count">
-                  <span>4 </span>ผลลัพธ์</div>
-                <div class="group-btn">
+        <form method = 'get' action=".">
+          {{filter.form}}
                   <button class="btn-delete" id="delete">รีเซ็ต</button>
-                  <button class="btn-search">ค้นหา</button>
+                  <button class="btn-search" type="submit" class>ค้นหา</button>
+        {% for train in filter.qs %}
+
                 </div>
               </div>
             </div>
@@ -79,29 +49,30 @@
       </form>
     </div>
     <br>
-    
-    {% comment %} ข้อมูลอบรมแต่ละรุ่น {% endcomment %}
     <div class="s009">
       <form>
         <div class="inner-form">
-          
           <div class="advance-search">
             <span class="desc"><h5>สมาคมสหกิจไทย</h5></span>
             <div class="row">
-                <div class="col-md-12"><label class="labels"> ชื่อหลักสูตร : </label> <span> คณาจารย์นิเทศสหกิจศึกษาและกรศึกษาเชิงบูรณาการกับการทำงานรุ่นที่ 7 </span></div>
-                <div class="col-md-12"><label class="labels"> ชื่อสมาคม : </label> <span> สมาคมสหกิจไทย </span></div>
-                <div class="col-md-12"><label class="labels"> ช่วงการอบรม : </label> <span> 2 - 4 มีนาคม 2565 </span></div>
-                <div class="col-md-12"><label class="labels"> จำนวนคนที่รับ : </label> <span> 90 คนขึ้นไป </span></div>
-                <div class="col-md-12"><label class="labels"> ค่าอบรมต่อคน : </label> <span> 5000/คน </span></div>
+                <div class="col-md-12"><label class="labels"> ชื่อหลักสูตร : </label> <span> {{train.curriculum}} </span></div>
+                <div class="col-md-12"><label class="labels"> ชื่อสมาคม : </label> <span> {{train.intstitute_name}} </span></div>
+                <div class="col-md-12"><label class="labels"> ช่วงการอบรม : </label> <span> {{train.datetime_event}} </span></div>
+                <div class="col-md-12"><label class="labels"> จำนวนคนที่รับ : </label> <span> {{train.amount}} </span></div>
+                <div class="col-md-12"><label class="labels"> ค่าอบรมต่อคน : </label> <span> {{train.cost}} </span></div>
             </div>
           
             <div class="row third">                              
-                 <a href={% url 'details' %}><button class="btn btn-primary profile-button" type="button" style= "background-color: #BA848C">รายละอียดเพิ่มเติม</button></a></div>
+                 <a href="{% url 'details' train.coop_train_id %}"><button class="btn btn-primary profile-button" type="button" style= "background-color: #BA848C">รายละอียดเพิ่มเติม</button></a></div>
               </div>
             </div>
             
           </div>
         </div>
+        {% empty %}
+          <div class="row">
+            <div class="col-md-12"><label class="labels"> ชื่อหลักสูตร : </label> <span> no data </span></div>
+        {% endfor %}
       </form>
     </div>
      

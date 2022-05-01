@@ -21,21 +21,18 @@
     <div class="center">
         <table id="t01">
             <tr>
-                <th><b>รายชื่อ</b></th>
-                <th><b>เลขที่</b></th>		
+                <th><b>รายชื่อ</b></th>	
                 <th><b>เลขทะเบียนนักศึกษา</b></th>
             </tr>
+            {% for student in student_filter %}
+
             <tr>
-                <td><a href="#">หทัยรัตน์ เล้าชินทอง</a></td>
-                <td>1</td>		
-                <td>6209656153</td>
+                <td><a href="{% url 'student_profile' student.student_id %}">{{student.student_firstname}} {{student.student_lastname}}</td>
+                <td>{{student.student_id}}</td>
             </tr>
-            <tr>
-                <td><a href="{% url 'student_profile' %}">เรณุกา สิมะดำรงค์</a</td>
-                <td>2</td>		
-                <td>6209656351</td>
-            </tr>   
+            {% endfor %}
         </table>
+        <div class='text-right'><p> รวมทั้งหมด {{number}} คน </p></div>
     </div>
 <br>
 <br>  

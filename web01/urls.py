@@ -17,27 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from cisweb import views
-from loginsystem import views as views_login
 from django.conf.urls.static import static, serve
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.urls import re_path
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home' ),
-    path('login1/', views_login.login_teacher, name='teacher'),
-    path('edit_profile/', views.edit_profile, name='edit'),
-    path('aadForm', views.profile),
-    path('login2/', views_login.login_staff, name='staff'),
-    path('login3/', views_login.login_student, name='student'),
+    path('login1/', views.login_teacher, name='teacher'),
+    path('edit_profile/<str:pk>', views.edit_profile, name='edit'),
+    path('profile/', views.profile),
+    path('login2/', views.login_staff, name='staff'),
+    path('login3/', views.login_student, name='student'),
     path('home/', views.cishome1,  name='profile'),
-    path('student_profile/', views.student_profile, name='student_profile'),
+    path('student_profile/<str:pk>', views.student_profile, name='student_profile'),
     path('responsibiility/', views.responsibiility, name='res'),
     path('accounts/', include('allauth.urls')),
-    path('train/', views.train, name='train'),
-    path('train_details/', views.traindetails, name='details'),
+    re_path(r'^train/$', views.train, name='train'),
+    path('train_details/<str:pk>', views.traindetails, name='details'),
+    path('login',views.login),
+    path('logout',views.logout),
+    path('checkdome',views.checkdome),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

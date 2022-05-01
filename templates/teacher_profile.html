@@ -20,10 +20,10 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="{% static 'img\pofile1.jpeg' %}"> 
+                <img class="rounded-circle mt-5" width="150px" src="{{ teacher.teacher_img.url }}"> 
                 <br>
                 <span class="font-weight-bold">01/2564</span>
-                <span class="text-black-50">อาจารย์ของหลักสูตร</span>
+                <span class="text-black-50">{{ teacher.role }}</span>
             </div>
         </div>
         <div class="col-md-5 border-right">
@@ -31,11 +31,13 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right"><b>ประวัติส่วนตัว</b></h4>
                 </div>
+
+                    {% csrf_token %}
                 <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">คำนำหน้าชื่อ : </label> <span> {{prefix}} </span></div>
-                    <div class="col-md-12"><label class="labels">เพศ : </label> <span> {{gender}} </span></div>
-                    <div class="col-md-12"><label class="labels"> ชื่อ :</label>  <span> {{firstname }}</span></div>
-                    <div class="col-md-12"><label class="labels"> นามสกุล : </label>  <span>{{lastname}}</span></div>
+                    <div class="col-md-12"><label class="labels">คำนำหน้าชื่อ : </label> <span> {{teacher.teacher_prefix}} </span></div>
+            
+                    <div class="col-md-12"><label class="labels"> ชื่อ :</label>  <span> {{teacher.teacher_firstname}}</span></div>
+                    <div class="col-md-12"><label class="labels"> นามสกุล : </label>  <span>{{teacher.teacher_lastname}}</span></div>
                 </div>
                 
                 {% comment %} <div class="row mt-3">
@@ -47,10 +49,10 @@
                     <div class="d-flex justify-content-between align-items-center ">
                     <span class="text-right"><b>ข้อมูลการติดต่อ</b></span>
                     </div>
-                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ : </label> <span>{{teacher_tel}} </span></div>
-                    <div class="col-md-12"><label class="labels">E-mail : </label> <span> {{teacher_email}} </span></div>
+                    <div class="col-md-12"><label class="labels">เบอร์ติดต่อ : </label> <span>{{teacher.teacher_tel}} </span></div>
+                    <div class="col-md-12"><label class="labels">E-mail : </label> <span> {{teacher.teacher_email}} </span></div>
                 </div>
-                <div class="mt-5 text-center"><a href={% url 'edit' %}><button class="btn btn-primary profile-button" type="button"> แก้ไขประวัติส่วนตัว</button></a></div>
+                <div class="mt-5 text-center"><a href="{% url 'edit' teacher.id_card %}"><button class="btn btn-primary profile-button" type="button"> แก้ไขประวัติส่วนตัว</button></a></div>
             </div>
         </div>
         
@@ -62,7 +64,11 @@
                 <div class="row mt-2"></div>
                 <div class="row mt">
                     <div class="col-md-12"><label class="labels">Ceritficate</label>
-                        <div class="col-md-12"><img width="250px" src="{% static 'img/certificate.jpg' %}"></div>
+                    {% if teacher.certificate %}
+                        <div class="col-md-12"><img width="250px" src="{{ teacher.certificate.url }}"></div>
+                    {% else %}
+                        <div class="col-md-12"><img width="250px" src="{% static 'img/no_certificate.png' %}"></div>
+                    {% endif %}
                     </div>
                     <div class="row mt-3">
                     {% comment %} <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> {% endcomment %}

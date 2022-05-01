@@ -1,1 +1,4 @@
-# cis_web_dsi
+requirement
+'allauth'
+'django_filters',
+'widget_tweaks',
